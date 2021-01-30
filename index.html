@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin:0;
+            padding: 0;
+            background: radial-gradient(#1385a5,#08506b,black) no-repeat fixed;
+        }
+        table{
+            background:black;
+            padding:7px 5px;
+            border: 6px solid black;
+            text-align:center;
+            padding-bottom: 0;
+            box-shadow: 0 0 27px #0d5569;
+            border-radius: 10px;
+            margin-top: 90px;
+        }
+        button.clear{
+            background:#57c735;
+            color:#fff;
+        }
+        button .equal{
+            background: #210b04;
+        }
+        button .equal:hover{
+            background:#000803;
+        }
+        input[type="text"]{
+            width:450px;
+            height: 81px;
+            border: 1px solid #000;
+            padding:10px 20px;
+            font-size: 29px;
+            background:#000;
+            font-weight: bold;
+            font-family: cursive;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #57c735;
+            color:#57c735;
+        }
+        input[type="text"]::placeholder{
+            color:#57c735;
+        }
+        button{
+            padding: 10px 20px;
+            width: 100px;
+            height: 60px;
+            margin-bottom: 20px;
+            font-size: 26px;
+            font-weight: bold;
+            font-family: cursive;
+            background: #000803;
+            border: none;
+            outline: none;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #57c735;
+        }
+        button:hover{
+            background: #1d532a;
+        }
+    </style>
+</head>
+<body>
+    <form name="calculator">
+        <table align="center">
+            <tr>
+                <td colspan="4"><input type="text" name="result" disabled placeholder="0" style="text-align:right;"></td>
+            </tr>
+            <tr>
+                <td><button type="button" value="sin" onclick="sin()">Sin</button></td>
+                <td><button type="button" value="cos" onclick="cos()">Cos</button></td>
+                <td><button type="button" value="tan" onclick="tan()">Tan</button></td>
+                <td><button type="button" value="C" class="clear" onclick="remove()">C</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" value="x^2" onclick="log()">log</button></button></td>
+                <td><button type="button" value="x^3" onclick="ln()">ln</button></td>
+                <td><button type="button" value="root" onclick="e()">e</button></td>
+                <td><button type="button" value="root3" onclick="back()">&#8592;</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" value="x^2" onclick="square()">x<sup>2</sup></button></button></td>
+                <td><button type="button" value="x^3" onclick="cube()">x<sup>3</sup></button></td>
+                <td><button type="button" value="root" onclick="root()">&radic;</button></td>
+                <td><button type="button" value="root3" onclick="sec()">Sec</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" value="7" onclick="number(value)">7</button></td>
+                <td><button type="button" value="8" onclick="number(value)">8</button></td>
+                <td><button type="button" value="9" onclick="number(value)">9</button></td>
+                <td><button type="button" value="/" onclick="number(value)">/</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" value="4" onclick="number(value)">4</button></td>
+                <td><button type="button" value="5" onclick="number(value)">5</button></td>
+                <td><button type="button" value="6" onclick="number(value)">6</button></td>
+                <td><button type="button" value="*" onclick="number(value)">*</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" value="1" onclick="number(value)">1</button></td>
+                <td><button type="button" value="2" onclick="number(value)">2</button></td>
+                <td><button type="button" value="3" onclick="number(value)">3</button></td>
+                <td><button type="button" value="-" onclick="number(value)">-</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" value="0" onclick="number(value)">0</button></td>
+                <td><button type="button" value="." onclick="number(value)">.</button></td>
+                <td><button type="button" value="+" onclick="number(value)">+</button></td>
+                <td><button type="button" value="=" class="equal" onclick="equal()">=</button></td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        
+        function sin(){
+            document.calculator.result.value = Math.sin(document.calculator.result.value * Math.PI / 180)
+        }
+        function cos(){
+            document.calculator.result.value = Math.cos(document.calculator.result.value * Math.PI / 180)
+        }
+        function tan(){
+            document.calculator.result.value = Math.tan(document.calculator.result.value * Math.PI / 180)
+        }
+        function remove(){
+            document.calculator.result.value = ''
+        }
+        function ln(){
+            document.calculator.result.value = Math.log(document.calculator.result.value)
+        }
+        function log(){
+            document.calculator.result.value = Math.log10(document.calculator.result.value)
+        }
+        function e(){
+            document.calculator.result.value = Math.exp(document.calculator.result.value)
+        }
+        function square(){
+            document.calculator.result.value = Math.pow(document.calculator.result.value,2)
+        }
+        function cube(){
+            document.calculator.result.value = Math.pow(document.calculator.result.value,3)
+        }
+        function root(){
+            document.calculator.result.value = Math.pow(document.calculator.result.value,1/2)
+        }
+        function back(){
+            document.calculator.result.value = document.calculator.result.value.substring(0, document.calculator.result.value.length-1)
+        }
+        function number(value){
+            document.calculator.result.value += value
+            console.log(value)
+            return false;
+        }
+        function equal(){
+            document.calculator.result.value = eval(document.calculator.result.value)
+        }
+    </script>
+</body>
+</html>
